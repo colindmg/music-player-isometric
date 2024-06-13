@@ -9,6 +9,8 @@ function App() {
           <Scene />
         </Canvas>
       </div>
+
+      <div className="h-[300vh]"></div>
     </>
   );
 }
