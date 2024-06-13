@@ -1,11 +1,21 @@
+import { motion } from "framer-motion-3d";
 import PropTypes from "prop-types";
 
 const Cover = ({ position, size, image }) => {
   return (
-    <mesh position={position}>
+    <motion.mesh
+      position={position}
+      whileHover={{
+        x: position[0] + 0.3,
+        transition: {
+          duration: 0.3,
+          ease: "easeOut",
+        },
+      }}
+    >
       <planeGeometry args={size} />
       <meshStandardMaterial color={image} />
-    </mesh>
+    </motion.mesh>
   );
 };
 

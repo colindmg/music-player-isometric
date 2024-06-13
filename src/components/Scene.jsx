@@ -39,7 +39,7 @@ const Scene = () => {
     });
 
   useEffect(() => {
-    return zValue.onChange((latest) => {
+    return zValue.on("change", (latest) => {
       if (cameraRef.current) {
         cameraRef.current.position.z = latest;
       }
