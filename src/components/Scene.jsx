@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 import { OrthographicCamera } from "@react-three/drei";
+import { useScroll, useTransform } from "framer-motion";
 import { useControls } from "leva";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Cover from "./Cover";
 
 const coverListTest = [
@@ -18,6 +19,14 @@ const coverListTest = [
 
 const Scene = () => {
   const cameraRef = useRef();
+  const { scrollY } = useScroll();
+
+  const maxZ = (coverListTest.length - 1) * -0.4 + 4;
+  const zValue = useTransform(
+    scrollY,
+    [0, document.body.scrollHeight - window.innerHeight],
+    [4, maxZ]
+  );
 
   const { cameraX, cameraY, cameraZ, cameraRotationX, cameraRotationY } =
     useControls({
@@ -28,6 +37,14 @@ const Scene = () => {
       cameraRotationX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.1 },
       cameraRotationY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.1 },
     });
+
+  useEffect(() => {
+    return zValue.onChange((latest) => {
+      if (cameraRef.current) {
+        cameraRef.current.position.z = latest;
+      }
+    });
+  }, [zValue]);
 
   return (
     <>
@@ -56,6 +73,7 @@ const Scene = () => {
         {coverListTest.map((color, index) => {
           const position = [0.5, 0.5, index * -0.4];
           const size = [1, 1, 1];
+
           return (
             <Cover
               position={position}
