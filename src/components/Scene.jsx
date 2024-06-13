@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { OrthographicCamera } from "@react-three/drei";
+import { useControls } from "leva";
 import { useRef } from "react";
 import Cover from "./Cover";
 
@@ -18,7 +19,15 @@ const coverListTest = [
 const Scene = () => {
   const cameraRef = useRef();
 
-  const coverSize = [1, 1, 1];
+  const { cameraX, cameraY, cameraZ, cameraRotationX, cameraRotationY } =
+    useControls({
+      cameraX: { value: 3, min: -2, max: 8, step: 0.1 },
+      cameraY: { value: 4, min: -2, max: 8, step: 0.1 },
+      cameraZ: { value: 4, min: -2, max: 8, step: 0.1 },
+
+      cameraRotationX: { value: 0, min: -Math.PI, max: Math.PI, step: 0.1 },
+      cameraRotationY: { value: 0, min: -Math.PI, max: Math.PI, step: 0.1 },
+    });
 
   return (
     <>
@@ -31,10 +40,12 @@ const Scene = () => {
         bottom={-1.5}
         near={1}
         far={100}
-        position={[3, 4, 4]}
+        position={[cameraX, cameraY, cameraZ]}
         rotation-order="YXZ"
         rotation-y={Math.PI / 5}
         rotation-x={Math.atan(-1 / Math.sqrt(2))}
+        // rotation-x={cameraRotationX}
+        // rotation-y={cameraRotationY}
       />
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 5, 10]} />

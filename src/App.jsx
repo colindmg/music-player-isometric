@@ -4,7 +4,7 @@ import Scene from "./components/Scene";
 function App() {
   return (
     <>
-      <div className="fixed w-screen h-screen top-0 left-0">
+      <div className="fixed w-screen h-screen top-0 left-0 bg-gray-50">
         <Canvas>
           <Scene />
         </Canvas>
