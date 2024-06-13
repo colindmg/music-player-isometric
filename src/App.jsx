@@ -10,7 +10,7 @@ function App() {
         </Canvas>
       </div>
 
-      <div className="h-[300vh]"></div>
+      <div className="h-[600vh]"></div>
     </>
   );
 }
