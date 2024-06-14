@@ -5,30 +5,8 @@ import { useScroll, useTransform } from "framer-motion";
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import coverListTest from "../data/coverListTest";
 import Cover from "./Cover";
-
-const coverListTest = [
-  "red",
-  "green",
-  "blue",
-  "yellow",
-  "red",
-  "green",
-  "blue",
-  "yellow",
-  "red",
-  "green",
-  "blue",
-  "yellow",
-  "red",
-  "green",
-  "blue",
-  "yellow",
-  "red",
-  "green",
-  "blue",
-  "yellow",
-];
 
 const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
   const cameraRef = useRef();
