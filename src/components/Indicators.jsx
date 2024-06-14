@@ -36,9 +36,8 @@ const Indicators = ({ isHidden }) => {
 
   return (
     <div
-      className={`h-8 absolute bottom-10 right-10 flex items-center gap-1.5 opacity-100 transition-opacity duration-500 ${
-        isHidden ? "opacity-0" : ""
-      }`}
+      className="h-8 absolute bottom-10 right-10 flex items-center gap-1.5 opacity-100 transition-opacity duration-500"
+      style={isHidden ? { opacity: 0 } : {}}
     >
       {coverListTest.map((cover, index) => (
         <div
