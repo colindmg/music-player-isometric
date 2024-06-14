@@ -67,12 +67,12 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
       cameraRef.current.rotation.x = THREE.MathUtils.lerp(
         cameraRef.current.rotation.x,
         0,
-        0.05
+        0.06
       );
       cameraRef.current.rotation.y = THREE.MathUtils.lerp(
         cameraRef.current.rotation.y,
         0,
-        0.05
+        0.06
       );
     }
   });
@@ -103,20 +103,21 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
           const position = [0.5, 0.5, index * -0.4];
           const size = [1, 1, 1];
 
-          if (currentAlbumData) {
-            return currentAlbumData.index === index ? (
-              <Cover
-                position={position}
-                size={size}
-                image={color}
-                key={index + color}
-                index={index}
-                handleClick={setCurrentAlbumData}
-              />
-            ) : null;
-          }
+          // if (currentAlbumData) {
+          //   return currentAlbumData.index === index ? (
+          //     <Cover
+          //       position={position}
+          //       size={size}
+          //       image={color}
+          //       key={index + color}
+          //       index={index}
+          //       handleClick={setCurrentAlbumData}
+          //     />
+          //   ) : null;
+          // }
           return (
             <Cover
+              isACoverClicked={currentAlbumData ? true : false}
               position={position}
               size={size}
               image={color}

@@ -3,7 +3,14 @@ import { motion } from "framer-motion-3d";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 
-const Cover = ({ position, size, image, handleClick, index }) => {
+const Cover = ({
+  position,
+  size,
+  image,
+  handleClick,
+  index,
+  isACoverClicked,
+}) => {
   const meshRef = useRef();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -24,6 +31,13 @@ const Cover = ({ position, size, image, handleClick, index }) => {
           ease: "easeOut",
         },
       }}
+      animate={{
+        scale: isClicked ? 2 : 1,
+        transition: {
+          duration: 1,
+          ease: "easeOut",
+        },
+      }}
       onPointerEnter={(e) => {
         e.stopPropagation();
         document.body.style.cursor = "pointer";
@@ -39,7 +53,14 @@ const Cover = ({ position, size, image, handleClick, index }) => {
       }}
     >
       <planeGeometry args={size} />
-      <meshStandardMaterial color={image} />
+      <motion.meshStandardMaterial
+        color={image}
+        transparent
+        animate={{
+          opacity: isACoverClicked && !isClicked ? 0 : 0.9,
+          transition: { duration: 0.5, ease: "easeOut" },
+        }}
+      />
     </motion.mesh>
   );
 };
@@ -50,6 +71,7 @@ Cover.propTypes = {
   image: PropTypes.string,
   index: PropTypes.number,
   handleClick: PropTypes.func,
+  isACoverClicked: PropTypes.bool,
 };
 
 export default Cover;
