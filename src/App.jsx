@@ -17,7 +17,7 @@ function App() {
         </Canvas>
 
         {/* INDICATEURS */}
-        <Indicators />
+        <Indicators isHidden={currentAlbumData ? true : false} />
 
         {/* DEBUG */}
         <h1 className="absolute">{currentAlbumData?.image}</h1>
