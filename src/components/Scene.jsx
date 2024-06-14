@@ -3,7 +3,7 @@ import { OrthographicCamera } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useScroll, useTransform } from "framer-motion";
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Cover from "./Cover";
 
@@ -56,6 +56,18 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
     });
   }, [zValue, currentAlbumData]);
 
+  // GÉRER LE RENDU OU NON DE TOUTES LES COVERS
+  const [renderAllCovers, setRenderAllCovers] = useState(true);
+  useEffect(() => {
+    if (currentAlbumData) {
+      setTimeout(() => {
+        setRenderAllCovers(false);
+      }, 500);
+    } else {
+      setRenderAllCovers(true);
+    }
+  }, [currentAlbumData]);
+
   // REMETTRE LA CAMÉRA À SA POSITION INITIALE SI IL Y A UN CURRENTALBUMDATA
   useFrame(() => {
     if (currentAlbumData && cameraRef.current) {
@@ -96,35 +108,39 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 5, 10]} />
 
-      <axesHelper args={[5]} />
+      {/* <axesHelper args={[5]} /> */}
       {/* <OrbitControls camera={cameraRef.current} /> */}
       <group>
         {coverListTest.map((color, index) => {
           const position = [0.5, 0.5, index * -0.4];
           const size = [1, 1, 1];
 
-          // if (currentAlbumData) {
-          //   return currentAlbumData.index === index ? (
-          //     <Cover
-          //       position={position}
-          //       size={size}
-          //       image={color}
-          //       key={index + color}
-          //       index={index}
-          //       handleClick={setCurrentAlbumData}
-          //     />
-          //   ) : null;
-          // }
+          if (renderAllCovers) {
+            return (
+              <Cover
+                isACoverClicked={currentAlbumData ? true : false}
+                position={position}
+                size={size}
+                image={color}
+                key={index + color}
+                index={index}
+                handleClick={setCurrentAlbumData}
+              />
+            );
+          }
+
           return (
-            <Cover
-              isACoverClicked={currentAlbumData ? true : false}
-              position={position}
-              size={size}
-              image={color}
-              key={index + color}
-              index={index}
-              handleClick={setCurrentAlbumData}
-            />
+            currentAlbumData.index === index && (
+              <Cover
+                isACoverClicked={currentAlbumData ? true : false}
+                position={position}
+                size={size}
+                image={color}
+                key={index + color}
+                index={index}
+                handleClick={setCurrentAlbumData}
+              />
+            )
           );
         })}
       </group>

@@ -40,7 +40,7 @@ const Cover = ({
       }}
       onPointerEnter={(e) => {
         e.stopPropagation();
-        document.body.style.cursor = "pointer";
+        !isClicked ? (document.body.style.cursor = "pointer") : null;
       }}
       onPointerOut={(e) => {
         e.stopPropagation();
@@ -57,7 +57,7 @@ const Cover = ({
         color={image}
         transparent
         animate={{
-          opacity: isACoverClicked && !isClicked ? 0 : 0.9,
+          opacity: isACoverClicked && !isClicked ? 0 : isClicked ? 1 : 0.9,
           transition: { duration: 0.5, ease: "easeOut" },
         }}
       />
