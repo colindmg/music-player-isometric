@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion-3d";
 import PropTypes from "prop-types";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Cover = ({ position, size, image, handleClick, index }) => {
   const meshRef = useRef();
+  const [isClicked, setIsClicked] = useState(false);
 
   const albumData = {
     index,
@@ -17,7 +18,7 @@ const Cover = ({ position, size, image, handleClick, index }) => {
       ref={meshRef}
       position={position}
       whileHover={{
-        x: position[0] + 0.2,
+        x: isClicked ? position[0] : position[0] + 0.2,
         transition: {
           duration: 0.3,
           ease: "easeOut",
@@ -33,7 +34,7 @@ const Cover = ({ position, size, image, handleClick, index }) => {
       }}
       onPointerDown={(e) => {
         e.stopPropagation();
-        console.log("click " + image);
+        setIsClicked(true);
         handleClick(albumData);
       }}
     >

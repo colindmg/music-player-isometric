@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 import { OrthographicCamera } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useScroll, useTransform } from "framer-motion";
 import PropTypes from "prop-types";
 import { useEffect, useRef } from "react";
+import * as THREE from "three";
 import Cover from "./Cover";
 
 const coverListTest = [
@@ -48,11 +50,32 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
 
   useEffect(() => {
     return zValue.on("change", (latest) => {
-      if (cameraRef.current) {
+      if (cameraRef.current && !currentAlbumData) {
         cameraRef.current.position.z = latest;
       }
     });
-  }, [zValue]);
+  }, [zValue, currentAlbumData]);
+
+  // REMETTRE LA CAMÉRA À SA POSITION INITIALE SI IL Y A UN CURRENTALBUMDATA
+  useFrame(() => {
+    if (currentAlbumData && cameraRef.current) {
+      // Smoothly interpolate the camera's position and rotation
+      cameraRef.current.position.lerp(
+        new THREE.Vector3(1.5, 0.5, currentAlbumData.position[2] + 2),
+        0.1
+      );
+      cameraRef.current.rotation.x = THREE.MathUtils.lerp(
+        cameraRef.current.rotation.x,
+        0,
+        0.05
+      );
+      cameraRef.current.rotation.y = THREE.MathUtils.lerp(
+        cameraRef.current.rotation.y,
+        0,
+        0.05
+      );
+    }
+  });
 
   return (
     <>
