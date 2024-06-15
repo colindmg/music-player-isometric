@@ -1,7 +1,7 @@
 import { useScroll, useTransform } from "framer-motion";
 import PropTypes from "prop-types";
 import { useEffect, useLayoutEffect, useState } from "react";
-import coverListTest from "../data/coverListTest";
+import AlbumList from "../data/AlbumList";
 
 const Indicators = ({ isHidden }) => {
   const { scrollY } = useScroll();
@@ -25,7 +25,7 @@ const Indicators = ({ isHidden }) => {
   const scrollIndex = useTransform(
     scrollY,
     [0, scrollHeight - innerHeight],
-    [0, coverListTest.length - 1]
+    [0, AlbumList.length - 1]
   );
 
   useEffect(() => {
@@ -39,9 +39,9 @@ const Indicators = ({ isHidden }) => {
       className="h-8 absolute bottom-10 right-10 flex items-center gap-1.5 opacity-100 transition-opacity duration-500"
       style={isHidden ? { opacity: 0 } : {}}
     >
-      {coverListTest.map((cover, index) => (
+      {AlbumList.map((album, index) => (
         <div
-          key={"Indicator " + index}
+          key={"Indicator for " + album.name}
           className={`w-[3px] h-5 bg-neutral-300 transition-all duration-100 ${
             index === scrollIndexValue ? "bg-neutral-900 h-8" : ""
           } ${

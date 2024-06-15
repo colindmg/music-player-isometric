@@ -6,27 +6,36 @@ import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import AlbumList from "../data/AlbumList";
-import coverListTest from "../data/coverListTest";
 import Cover from "./Cover";
 
 const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
+  // CONSTANTES
   const cameraRef = useRef();
   const { scrollY } = useScroll();
 
-  const maxZ = (coverListTest.length - 1) * -0.4 + 4;
+  // ÉTAT D'AFFICHAGE DE TOUTES LES COVERS OU NON
+  const [renderAllCovers, setRenderAllCovers] = useState(true);
+
+  const maxZ = (AlbumList.length - 1) * -0.4 + 4;
   const zValue = useTransform(
     scrollY,
     [0, document.body.scrollHeight - window.innerHeight],
     [4, maxZ]
   );
 
+  // POSITION INITIALE DE LA CAMÉRA
+  const [cameraX, cameraY, cameraZ] = [3, 4, 4];
   // const { cameraX, cameraY, cameraZ } = useControls({
   //   cameraX: { value: 3, min: -2, max: 8, step: 0.1 },
   //   cameraY: { value: 4, min: -2, max: 8, step: 0.1 },
   //   cameraZ: { value: 4, min: -2, max: 8, step: 0.1 },
   // });
-  const [cameraX, cameraY, cameraZ] = [3, 4, 4];
 
+  // -----------------------------------------------------
+
+  // HOOKS
+
+  // CHANGER LA POSITION Z DE LA CAMÉRA AU SCROLL
   useEffect(() => {
     return zValue.on("change", (latest) => {
       if (cameraRef.current && !currentAlbumData) {
@@ -36,7 +45,6 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
   }, [zValue, currentAlbumData]);
 
   // GÉRER LE RENDU OU NON DE TOUTES LES COVERS
-  const [renderAllCovers, setRenderAllCovers] = useState(true);
   useEffect(() => {
     if (currentAlbumData) {
       setTimeout(() => {
@@ -50,7 +58,6 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
   // REMETTRE LA CAMÉRA À SA POSITION INITIALE SI IL Y A UN CURRENTALBUMDATA
   useFrame(() => {
     if (currentAlbumData && cameraRef.current) {
-      // Smoothly interpolate the camera's position and rotation
       cameraRef.current.position.lerp(
         new THREE.Vector3(1.5, 0.5, currentAlbumData.position[2] + 2),
         0.1
