@@ -7,7 +7,7 @@ const HoveredAlbumInfos = ({ name, artist, isHidden }) => {
         isHidden ? "opacity-0" : ""
       } transition-opacity duration-500`}
     >
-      <h3 className="text-3xl text-neutra-900">{name}</h3>
+      <h3 className="text-3xl text-neutral-900">{name}</h3>
       <h3 className="text-xl font-light text-neutral-500">{artist}</h3>
     </div>
   );

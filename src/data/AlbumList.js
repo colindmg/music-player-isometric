@@ -2,6 +2,7 @@ const AlbumList = [
   // GARCON de Luther
   {
     name: "Garçon",
+    year: 2022,
     artist: "Luther",
     cover: "/img/covers/garcon-luther.webp",
     songs: [
@@ -19,6 +20,7 @@ const AlbumList = [
       },
       {
         title: "LESSGUI",
+        isLoved: true,
       },
       {
         title: "LE SANG",
@@ -28,12 +30,14 @@ const AlbumList = [
       },
       {
         title: "GARÇON",
+        isLoved: true,
       },
     ],
   },
   // L'AFRO OU LES TRESSES de Yvnnis
   {
-    name: "L'Afro ou Les Tresses",
+    name: "L'Afro ou les Tresses",
+    year: 2024,
     artist: "Yvnnis",
     cover: "/img/covers/afrotresse-yvnnis.webp",
     songs: [

@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useState } from "react";
+import AlbumDetails from "./components/AlbumDetails";
 import HoveredAlbumInfos from "./components/HoveredAlbumInfos";
 import Indicators from "./components/Indicators";
 import Scene from "./components/Scene";
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <div className="fixed w-screen h-screen top-0 left-0 bg-gray-50">
+        {/* SCENE 3D */}
         <Canvas>
           <Scene
             setCurrentAlbumData={setCurrentAlbumData}
@@ -35,6 +37,9 @@ function App() {
           />
         )}
 
+        {/* DÉTAILS UNE FOIS L'ALBUM SÉLECTIONNÉ */}
+        {currentAlbumData && <AlbumDetails album={currentAlbumData} />}
+
         {/* LOGO */}
         <img
           src="/img/logos/logoblack.svg"
@@ -53,9 +58,6 @@ function App() {
           className="pointer-events-none absolute bottom-0 left-0 w-[800px] opacity-100 transition-opacity duration-500"
           style={currentAlbumData ? { opacity: 0 } : {}}
         />
-
-        {/* DEBUG */}
-        <h1 className="absolute">{currentAlbumData?.image}</h1>
       </div>
 
       {/* TAILLE DU SCROLL */}
