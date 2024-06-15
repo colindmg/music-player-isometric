@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unknown-property */
+import { useLoader } from "@react-three/fiber";
 import { motion } from "framer-motion-3d";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
+import { TextureLoader } from "three";
 
 const Cover = ({
   position,
@@ -13,6 +15,7 @@ const Cover = ({
 }) => {
   const meshRef = useRef();
   const [isClicked, setIsClicked] = useState(false);
+  const texture = useLoader(TextureLoader, image);
 
   const albumData = {
     index,
@@ -54,10 +57,11 @@ const Cover = ({
     >
       <planeGeometry args={size} />
       <motion.meshStandardMaterial
-        color={image}
+        // color={image}
+        map={texture}
         transparent
         animate={{
-          opacity: isACoverClicked && !isClicked ? 0 : isClicked ? 1 : 0.9,
+          opacity: isACoverClicked && !isClicked ? 0 : isClicked ? 1 : 0.95,
           transition: { duration: 0.5, ease: "easeOut" },
         }}
       />

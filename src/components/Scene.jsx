@@ -5,6 +5,7 @@ import { useScroll, useTransform } from "framer-motion";
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import AlbumList from "../data/AlbumList";
 import coverListTest from "../data/coverListTest";
 import Cover from "./Cover";
 
@@ -83,13 +84,13 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
         rotation-y={Math.PI / 5}
         rotation-x={Math.atan(-1 / Math.sqrt(2))}
       />
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 5, 10]} />
+      <ambientLight intensity={3} />
+      {/* <directionalLight position={[10, 0, 0]} /> */}
 
       {/* <axesHelper args={[5]} /> */}
       {/* <OrbitControls camera={cameraRef.current} /> */}
       <group>
-        {coverListTest.map((color, index) => {
+        {AlbumList.map((album, index) => {
           const position = [0.5, 0.5, index * -0.4];
           const size = [1, 1, 1];
 
@@ -99,8 +100,8 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
                 isACoverClicked={currentAlbumData ? true : false}
                 position={position}
                 size={size}
-                image={color}
-                key={index + color}
+                image={album.cover}
+                key={album.name}
                 index={index}
                 handleClick={setCurrentAlbumData}
               />
@@ -113,8 +114,8 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
                 isACoverClicked={currentAlbumData ? true : false}
                 position={position}
                 size={size}
-                image={color}
-                key={index + color}
+                image={album.cover}
+                key={album.name}
                 index={index}
                 handleClick={setCurrentAlbumData}
               />
