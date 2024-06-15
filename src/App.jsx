@@ -35,6 +35,13 @@ function App() {
           />
         )}
 
+        {/* LOGO */}
+        <img
+          src="/img/logos/logoblack.svg"
+          className="absolute top-10 left-10 w-16 h-16 transition-opacity duration-500"
+          style={currentAlbumData ? { opacity: 0 } : {}}
+        />
+
         {/* FORMES BLURRED */}
         <img
           src="/img/forms/topright.svg"
