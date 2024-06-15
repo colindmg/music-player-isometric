@@ -8,7 +8,11 @@ import * as THREE from "three";
 import AlbumList from "../data/AlbumList";
 import Cover from "./Cover";
 
-const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
+const Scene = ({
+  setCurrentAlbumData,
+  setHoveredAlbumData,
+  currentAlbumData,
+}) => {
   // CONSTANTES
   const cameraRef = useRef();
   const { scrollY } = useScroll();
@@ -107,10 +111,11 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
                 isACoverClicked={currentAlbumData ? true : false}
                 position={position}
                 size={size}
-                image={album.cover}
                 key={album.name}
+                album={album}
                 index={index}
                 handleClick={setCurrentAlbumData}
+                handleHover={setHoveredAlbumData}
               />
             );
           }
@@ -121,10 +126,11 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
                 isACoverClicked={currentAlbumData ? true : false}
                 position={position}
                 size={size}
-                image={album.cover}
                 key={album.name}
+                album={album}
                 index={index}
                 handleClick={setCurrentAlbumData}
+                handleHover={setHoveredAlbumData}
               />
             )
           );
@@ -137,6 +143,7 @@ const Scene = ({ setCurrentAlbumData, currentAlbumData }) => {
 Scene.propTypes = {
   setCurrentAlbumData: PropTypes.func,
   currentAlbumData: PropTypes.object,
+  setHoveredAlbumData: PropTypes.func,
 };
 
 export default Scene;

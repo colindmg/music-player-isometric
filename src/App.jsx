@@ -1,10 +1,16 @@
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import HoveredAlbumInfos from "./components/HoveredAlbumInfos";
 import Indicators from "./components/Indicators";
 import Scene from "./components/Scene";
 
 function App() {
   const [currentAlbumData, setCurrentAlbumData] = useState(null);
+  const [hoveredAlbumData, setHoveredAlbumData] = useState(null);
+
+  useEffect(() => {
+    console.log(hoveredAlbumData);
+  }, [hoveredAlbumData]);
 
   return (
     <>
@@ -12,12 +18,22 @@ function App() {
         <Canvas>
           <Scene
             setCurrentAlbumData={setCurrentAlbumData}
+            setHoveredAlbumData={setHoveredAlbumData}
             currentAlbumData={currentAlbumData}
           />
         </Canvas>
 
         {/* INDICATEURS */}
         <Indicators isHidden={currentAlbumData ? true : false} />
+
+        {/* INFORMATIONS SUR L'ALBUM HOVERED */}
+        {hoveredAlbumData !== null && (
+          <HoveredAlbumInfos
+            name={hoveredAlbumData.name}
+            artist={hoveredAlbumData.artist}
+            isHidden={currentAlbumData ? true : false}
+          />
+        )}
 
         {/* FORMES BLURRED */}
         <img

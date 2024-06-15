@@ -8,19 +8,20 @@ import { TextureLoader } from "three";
 const Cover = ({
   position,
   size,
-  image,
+  album,
   handleClick,
+  handleHover,
   index,
   isACoverClicked,
 }) => {
   const meshRef = useRef();
   const [isClicked, setIsClicked] = useState(false);
-  const texture = useLoader(TextureLoader, image);
+  const texture = useLoader(TextureLoader, album.cover);
 
   const albumData = {
+    ...album,
     index,
     position,
-    image,
   };
 
   return (
@@ -44,10 +45,12 @@ const Cover = ({
       onPointerEnter={(e) => {
         e.stopPropagation();
         !isClicked ? (document.body.style.cursor = "pointer") : null;
+        handleHover(albumData);
       }}
       onPointerOut={(e) => {
         e.stopPropagation();
         document.body.style.cursor = "auto";
+        handleHover(null);
       }}
       onPointerDown={(e) => {
         e.stopPropagation();
@@ -75,6 +78,8 @@ Cover.propTypes = {
   image: PropTypes.string,
   index: PropTypes.number,
   handleClick: PropTypes.func,
+  handleHover: PropTypes.func,
+  album: PropTypes.object,
   isACoverClicked: PropTypes.bool,
 };
 
