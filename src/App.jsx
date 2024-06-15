@@ -29,13 +29,17 @@ function App() {
         <Indicators isHidden={currentAlbumData ? true : false} />
 
         {/* INFORMATIONS SUR L'ALBUM HOVERED */}
-        {hoveredAlbumData !== null && (
-          <HoveredAlbumInfos
-            name={hoveredAlbumData.name}
-            artist={hoveredAlbumData.artist}
-            isHidden={currentAlbumData ? true : false}
-          />
-        )}
+        <HoveredAlbumInfos
+          name={
+            hoveredAlbumData ? hoveredAlbumData.name : currentAlbumData?.name
+          }
+          artist={
+            hoveredAlbumData
+              ? hoveredAlbumData.artist
+              : currentAlbumData?.artist
+          }
+          isHidden={hoveredAlbumData ? false : true}
+        />
 
         {/* DÉTAILS UNE FOIS L'ALBUM SÉLECTIONNÉ */}
         {currentAlbumData && <AlbumDetails album={currentAlbumData} />}
