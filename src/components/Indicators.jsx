@@ -42,7 +42,7 @@ const Indicators = ({ isHidden }) => {
       {AlbumList.map((album, index) => (
         <div
           key={"Indicator for " + album.name}
-          className={`w-[3px] h-5 bg-neutral-300 transition-all duration-100 ${
+          className={`w-[3px] h-5 rounded-full bg-neutral-300 transition-all duration-100 ${
             index === scrollIndexValue ? "bg-neutral-900 h-8" : ""
           } ${
             index === scrollIndexValue - 1 || index === scrollIndexValue + 1
