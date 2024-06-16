@@ -45,6 +45,12 @@ const AlbumList = [
     artist: "baby hayabusa",
     cover: "/img/covers/baby-hayabusa.webp",
   },
+  // ARVA OFFMODE de Snorunt
+  {
+    name: "Arva Offmode",
+    artist: "Snorunt",
+    cover: "/img/covers/arvaoffmode-snorunt.webp",
+  },
   // GARCON de Luther
   {
     name: "Garçon",
@@ -86,6 +92,12 @@ const AlbumList = [
     artist: "Wallace Cleaver",
     cover: "/img/covers/baiser-wallace.webp",
   },
+  // 1.6 de TIF
+  {
+    name: "1.6",
+    artist: "TIF",
+    cover: "/img/covers/16-tif.webp",
+  },
   // ÇA VA ALLER de NeS
   {
     name: "Ça va aller",
@@ -104,11 +116,23 @@ const AlbumList = [
     artist: "Luther",
     cover: "/img/covers/exit-luther.webp",
   },
+  // LE BIJOU LE PLUS BRILLANT de J9ueve
+  {
+    name: "Le Bijou le Plus Brillant",
+    artist: "J9ueve",
+    cover: "/img/covers/bijouplusbrillant-j9ueve.webp",
+  },
   // JAAFAR de Rounhaa
   {
     name: "JAAFAR",
     artist: "Rounhaa",
     cover: "/img/covers/jaafar-rounhaa.webp",
+  },
+  // ERRR de La Fève
+  {
+    name: "ERRR",
+    artist: "La Fève",
+    cover: "/img/covers/errr-lafeve.webp",
   },
   // MÉTAMORPHOSES de Neophron
   {
@@ -116,11 +140,23 @@ const AlbumList = [
     artist: "neophron",
     cover: "/img/covers/metamorphoses-neophron.webp",
   },
+  // ÉTERNEL RETOUR de Selug
+  {
+    name: "Éternel Retour",
+    artist: "Selug",
+    cover: "/img/covers/eternelretour-selug.webp",
+  },
   // L'HERMITE de Ajna
   {
     name: "L'Hermite",
     artist: "Ajna",
     cover: "/img/covers/hermite-ajna.webp",
+  },
+  // FISSURE DE VIE de So la Lune
+  {
+    name: "Fissure de Vie",
+    artist: "So la Lune",
+    cover: "/img/covers/fissuredevie-solalune.webp",
   },
   // SOLSAD de Zamdane
   {
@@ -128,11 +164,35 @@ const AlbumList = [
     artist: "Zamdane",
     cover: "/img/covers/solsad-zamdane.webp",
   },
+  // KOLAF de La Fève & Kosei
+  {
+    name: "KOLAF",
+    artist: "La Fève & Kosei",
+    cover: "/img/covers/kolaf-lafevekosei.webp",
+  },
   // TRINITY de Laylow
   {
     name: "Trinity",
     artist: "Laylow",
     cover: "/img/covers/trinity-laylow.webp",
+  },
+  // NUMÉRO 11 de So la Lune
+  {
+    name: "Numéro 11",
+    artist: "So la Lune",
+    cover: "/img/covers/numero11-solalune.webp",
+  },
+  // MÖBIUS de Rounhaa
+  {
+    name: "Möbius",
+    artist: "Rounhaa",
+    cover: "/img/covers/mobius-rounhaa.webp",
+  },
+  // NOVAE de Yvnnis
+  {
+    name: "Novae",
+    artist: "Yvnnis",
+    cover: "/img/covers/novae-yvnnis.webp",
   },
 ];
 
