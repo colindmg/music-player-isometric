@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AlbumDetails from "./components/AlbumDetails";
 import HoveredAlbumInfos from "./components/HoveredAlbumInfos";
 import Indicators from "./components/Indicators";
@@ -8,10 +8,6 @@ import Scene from "./components/Scene";
 function App() {
   const [currentAlbumData, setCurrentAlbumData] = useState(null);
   const [hoveredAlbumData, setHoveredAlbumData] = useState(null);
-
-  useEffect(() => {
-    console.log(hoveredAlbumData);
-  }, [hoveredAlbumData]);
 
   return (
     <>
@@ -43,6 +39,19 @@ function App() {
 
         {/* DÉTAILS UNE FOIS L'ALBUM SÉLECTIONNÉ */}
         {currentAlbumData && <AlbumDetails album={currentAlbumData} />}
+
+        {/* FLÊCHE DE RETOUR DANS LA VUE DE DÉTAILS D'UN ALBUM */}
+        {currentAlbumData && (
+          <button
+            onClick={() => {
+              setCurrentAlbumData(null);
+              window.scrollTo(0, 0);
+            }}
+            className="absolute left-20 top-1/2 p-2 rounded-full bg-neutral-900 "
+          >
+            <img src="/img/icons/return-arrow.svg" className="w-4 h-4" />
+          </button>
+        )}
 
         {/* LOGO */}
         <img
