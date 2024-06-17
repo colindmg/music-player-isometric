@@ -59,7 +59,7 @@ const Scene = ({
     }
   }, [currentAlbumData]);
 
-  // REMETTRE LA CAMÉRA À SA POSITION INITIALE SI IL Y A UN CURRENTALBUMDATA
+  // CHANGER LA POSITION/ROTATION DE LA CAMERA EN FONCTION DE SI LE CURRENTALBUMDATA EST NULL OU NON
   useFrame(() => {
     if (currentAlbumData && cameraRef.current) {
       cameraRef.current.position.lerp(
@@ -78,6 +78,17 @@ const Scene = ({
       );
     }
   });
+
+  // RESET LA POSITION DE LA CAMERA QUAND ON REVIENT À LA VUE GLOBALE
+  useEffect(() => {
+    if (!currentAlbumData && cameraRef.current) {
+      cameraRef.current.position.x = cameraX;
+      cameraRef.current.position.y = cameraY;
+      cameraRef.current.position.z = cameraZ;
+      cameraRef.current.rotation.x = Math.atan(-1 / Math.sqrt(2));
+      cameraRef.current.rotation.y = Math.PI / 5;
+    }
+  }, [currentAlbumData, cameraX, cameraY, cameraZ]);
 
   return (
     <>
@@ -121,7 +132,7 @@ const Scene = ({
           }
 
           return (
-            currentAlbumData.index === index && (
+            currentAlbumData?.index === index && (
               <Cover
                 isACoverClicked={currentAlbumData ? true : false}
                 position={position}
