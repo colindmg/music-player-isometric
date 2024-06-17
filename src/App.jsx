@@ -38,7 +38,7 @@ function App() {
               ? hoveredAlbumData.artist
               : currentAlbumData?.artist
           }
-          isHidden={hoveredAlbumData ? false : true}
+          isHidden={hoveredAlbumData && !currentAlbumData ? false : true}
         />
 
         {/* DÉTAILS UNE FOIS L'ALBUM SÉLECTIONNÉ */}
