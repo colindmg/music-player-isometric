@@ -27,7 +27,7 @@ const AlbumDetails = ({ album }) => {
             ease: "easeOut",
           }}
         >
-          {album.artist} • {album.year} • {album.songs.length} titres
+          {album.artist} • {album.year} • {album.songs.length} songs
         </motion.h3>
       </div>
 

@@ -69,11 +69,15 @@ function App() {
         ></div>
 
         {/* LOGO */}
-        <img
-          src="/img/logos/logoblack.svg"
-          className="absolute top-10 left-10 w-16 h-16 transition-opacity duration-500"
+        <div
+          className="flex items-center gap-4 absolute top-10 left-10 transition-opacity duration-500"
           style={currentAlbumData ? { opacity: 0 } : {}}
-        />
+        >
+          <img src="/img/logos/logoblack.svg" className="w-16 h-16" />
+          <h1 className="text-neutral-900 text-4xl">
+            <span className="font-extrabold">Re</span>cords.
+          </h1>
+        </div>
 
         {/* FORMES BLURRED */}
         <img
