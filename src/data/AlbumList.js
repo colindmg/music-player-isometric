@@ -83,6 +83,7 @@ const AlbumList = [
       {
         title: "GARÇON",
         isLoved: true,
+        mp3: "/songs/garcon-luther.mp3",
       },
     ],
   },
