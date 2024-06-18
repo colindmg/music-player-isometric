@@ -9,6 +9,8 @@ function App() {
   const [currentAlbumData, setCurrentAlbumData] = useState(null);
   const [hoveredAlbumData, setHoveredAlbumData] = useState(null);
   const [displayOverlay, setDisplayOverlay] = useState(false);
+  const [playingAlbum, setPlayingAlbum] = useState(null);
+  const [playingSongIndex, setPlayingSongIndex] = useState(null);
 
   return (
     <>
@@ -39,7 +41,19 @@ function App() {
         />
 
         {/* DÉTAILS UNE FOIS L'ALBUM SÉLECTIONNÉ */}
-        {currentAlbumData && <AlbumDetails album={currentAlbumData} />}
+        {currentAlbumData && (
+          <AlbumDetails
+            album={currentAlbumData}
+            setPlayingAlbum={setPlayingAlbum}
+            setPlayingSongIndex={setPlayingSongIndex}
+          />
+        )}
+
+        {/* DEBUG */}
+        <div className="absolute top-0 left-0">
+          <p>{playingAlbum?.artist}</p>
+          <p>{playingAlbum?.songs[playingSongIndex].title}</p>
+        </div>
 
         {/* FLÊCHE DE RETOUR DANS LA VUE DE DÉTAILS D'UN ALBUM */}
         {currentAlbumData && (

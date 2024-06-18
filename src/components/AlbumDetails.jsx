@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
-const AlbumDetails = ({ album }) => {
+const AlbumDetails = ({ album, setPlayingAlbum, setPlayingSongIndex }) => {
   return (
     <div className="absolute left-[53%] h-[550px] top-1/2 -translate-y-1/2 flex flex-col gap-10">
       {/* TITRE ET AUTEUR */}
@@ -44,6 +44,10 @@ const AlbumDetails = ({ album }) => {
               duration: 0.4,
               ease: "easeOut",
             }}
+            onClick={() => {
+              setPlayingAlbum(album);
+              setPlayingSongIndex(index);
+            }}
           >
             <div className="flex items-center">
               <p className="font-semibold w-5 text-sm">{index + 1}.</p>
@@ -70,6 +74,8 @@ const AlbumDetails = ({ album }) => {
 
 AlbumDetails.propTypes = {
   album: PropTypes.object,
+  setPlayingAlbum: PropTypes.func,
+  setPlayingSongIndex: PropTypes.func,
 };
 
 export default AlbumDetails;
