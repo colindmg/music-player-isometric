@@ -44,7 +44,9 @@ function App() {
         {currentAlbumData && (
           <AlbumDetails
             album={currentAlbumData}
+            playingAlbum={playingAlbum}
             setPlayingAlbum={setPlayingAlbum}
+            playingSongIndex={playingSongIndex}
             setPlayingSongIndex={setPlayingSongIndex}
           />
         )}

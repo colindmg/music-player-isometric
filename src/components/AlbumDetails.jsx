@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import AudioAnimatedIcon from "./AudioAnimatedIcon";
 
-const AlbumDetails = ({ album, setPlayingAlbum, setPlayingSongIndex }) => {
+const AlbumDetails = ({
+  album,
+  playingAlbum,
+  setPlayingAlbum,
+  playingSongIndex,
+  setPlayingSongIndex,
+}) => {
   return (
     <div className="absolute left-[53%] h-[550px] top-1/2 -translate-y-1/2 flex flex-col gap-10">
       {/* TITRE ET AUTEUR */}
@@ -36,7 +43,11 @@ const AlbumDetails = ({ album, setPlayingAlbum, setPlayingSongIndex }) => {
         {album.songs.map((song, index) => (
           <motion.div
             key={song.title + " - " + album.artist}
-            className="flex gap-40 items-center justify-between px-4 py-2 cursor-pointer rounded-lg hover:bg-neutral-100 transition-colors duration-100"
+            className={`flex gap-40 items-center justify-between px-4 py-2 cursor-pointer rounded-lg hover:bg-[#F1F1F1] transition-colors duration-100 ${
+              album === playingAlbum && index === playingSongIndex
+                ? "bg-[#F1F1F1]"
+                : ""
+            }`}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
@@ -51,8 +62,19 @@ const AlbumDetails = ({ album, setPlayingAlbum, setPlayingSongIndex }) => {
           >
             <div className="flex items-center">
               <p className="font-semibold w-5 text-sm">{index + 1}.</p>
-              <div className="flex flex-col">
-                <h3 className="text-lg text-neutra-900">{song.title}</h3>
+              <div className="flex gap-2 items-center">
+                <h3
+                  className={`text-lg text-neutral-900 ${
+                    album === playingAlbum && index === playingSongIndex
+                      ? "font-semibold"
+                      : ""
+                  }`}
+                >
+                  {song.title}
+                </h3>
+                {album === playingAlbum && index === playingSongIndex && (
+                  <AudioAnimatedIcon />
+                )}
               </div>
             </div>
 
@@ -74,7 +96,9 @@ const AlbumDetails = ({ album, setPlayingAlbum, setPlayingSongIndex }) => {
 
 AlbumDetails.propTypes = {
   album: PropTypes.object,
+  playingAlbum: PropTypes.object,
   setPlayingAlbum: PropTypes.func,
+  playingSongIndex: PropTypes.number,
   setPlayingSongIndex: PropTypes.func,
 };
 
