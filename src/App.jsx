@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 import AlbumDetails from "./components/AlbumDetails";
+import AudioAnimatedIcon from "./components/AudioAnimatedIcon";
 import HoveredAlbumInfos from "./components/HoveredAlbumInfos";
 import Indicators from "./components/Indicators";
 import Scene from "./components/Scene";
@@ -53,8 +54,8 @@ function App() {
 
         {/* DEBUG */}
         <div className="absolute top-0 left-0">
-          <p>{playingAlbum?.artist}</p>
-          <p>{playingAlbum?.songs[playingSongIndex].title}</p>
+          {/* <p>{playingAlbum?.artist}</p>
+          <p>{playingAlbum?.songs[playingSongIndex].title}</p> */}
           <audio
             src={
               playingAlbum?.songs[playingSongIndex].mp3
@@ -87,11 +88,22 @@ function App() {
 
         {/* OVERLAY DE TRANSITION ENTRE LES DEUX VUES */}
         <div
-          className="pointer-events-none fixed top-0 left-0 bg-gray-50 w-screen h-screen z-50 transition-opacity duration-500"
+          className="pointer-events-none fixed top-0 left-0 bg-gray-50 w-screen h-screen z-50 transition-opacity duration-500 flex flex-col items-center justify-center gap-2"
           style={{
             opacity: displayOverlay ? 1 : 0,
           }}
-        ></div>
+        >
+          <p className="text-neutral-500 text-lg -translate-x-24">
+            {playingSongIndex && "Now playing"}
+          </p>
+          <div className="flex items-center gap-2">
+            <p className="text-neutral-900 text-xl font-medium">
+              {playingAlbum?.songs[playingSongIndex].title} by{" "}
+              {playingAlbum?.artist}
+            </p>
+            {playingAlbum && <AudioAnimatedIcon />}
+          </div>
+        </div>
 
         {/* LOGO */}
         <div
