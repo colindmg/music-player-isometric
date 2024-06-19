@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import AudioAnimatedIcon from "./AudioAnimatedIcon";
 
 const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
   const audioRef = useRef(null);
@@ -51,9 +52,13 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
             className="w-24 h-24 rounded-md"
           />
           <div>
-            <p className="text-neutral-900 text-xl font-medium">
-              {playingAlbum?.songs[playingSongIndex].title}
-            </p>
+            <div className="flex items-center gap-2">
+              <p className="text-neutral-900 text-xl font-medium">
+                {playingAlbum?.songs[playingSongIndex].title}
+              </p>
+              <AudioAnimatedIcon />
+            </div>
+
             <p className="text-[#737373]">by {playingAlbum?.artist}</p>
           </div>
         </div>
@@ -75,7 +80,7 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
       </div>
 
       {/* BARRE DE LECTURE DU MORCEAU */}
-      <div className="flex items-center gap-2 mt-3 mr-1">
+      <div className="flex items-center gap-2 mt-3">
         <p className="text-[#737373] text-xs w-8">{formatTime(currentTime)}</p>
         <div className="relative w-full h-1 bg-white rounded-full">
           <div
@@ -96,6 +101,37 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
         autoPlay
         preload="auto"
       ></audio>
+
+      {/* BOUTONS DE CONTROLE DU PLAYER */}
+      <div className="flex justify-between items-center mt-1.5">
+        <img
+          src="/img/icons/shuffle.svg"
+          alt="Shuffle songs"
+          className="cursor-pointer"
+        />
+        <div className="flex items-center gap-5">
+          <img
+            src="/img/icons/previous-song.svg"
+            alt="Previous song icon"
+            className="w-5 cursor-pointer"
+          />
+          <img
+            src="/img/icons/pause.svg"
+            alt="Play song icon"
+            className="w-5 cursor-pointer"
+          />
+          <img
+            src="/img/icons/next-song.svg"
+            alt="Next song icon"
+            className="w-5 cursor-pointer"
+          />
+        </div>
+        <img
+          src="/img/icons/repeat.svg"
+          alt="Repeat song"
+          className="cursor-pointer"
+        />
+      </div>
     </div>
   );
 };
