@@ -38,6 +38,37 @@ const AlbumList = [
     artist: "Deemax",
     year: 2024,
     cover: "/img/covers/amaplace-deemax.webp",
+    songs: [
+      {
+        title: "ITADORI",
+        mp3: "/songs/itadori-deemax.mp3",
+      },
+      {
+        title: "LA 3ème FOIS",
+      },
+      {
+        title: "J'PARS DE LÀ",
+      },
+      {
+        title: "SOUS L'ORAGE",
+      },
+      {
+        title: "CERF VOLANT (interlude)",
+      },
+      {
+        title: "SHOW",
+      },
+      {
+        title: "DE BELLEVILLE À TBILISI",
+        isLoved: true,
+      },
+      {
+        title: "ENTIÈREMENT À TOI",
+      },
+      {
+        title: "À MA PLACE",
+      },
+    ],
   },
   // DEADLY POISON STING de baby hayabusa
   {

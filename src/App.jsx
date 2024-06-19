@@ -102,7 +102,7 @@ function App() {
           }}
         >
           <p className="text-neutral-500 text-lg -translate-x-24">
-            {playingSongIndex && "Now playing"}
+            {playingSongIndex !== null && "Now playing"}
           </p>
           <div className="flex items-center gap-2">
             <p className="text-neutral-900 text-xl font-medium">
