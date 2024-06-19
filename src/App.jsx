@@ -4,6 +4,7 @@ import AlbumDetails from "./components/AlbumDetails";
 import AudioAnimatedIcon from "./components/AudioAnimatedIcon";
 import HoveredAlbumInfos from "./components/HoveredAlbumInfos";
 import Indicators from "./components/Indicators";
+import MusicPlayer from "./components/MusicPlayer";
 import Scene from "./components/Scene";
 
 function App() {
@@ -52,10 +53,17 @@ function App() {
           />
         )}
 
+        {/* PLAYER DE MUSIQUE */}
+        <MusicPlayer
+          playingAlbum={playingAlbum}
+          playingSongIndex={playingSongIndex}
+          isHidden={currentAlbumData ? true : false}
+        />
+
         {/* DEBUG */}
-        <div className="absolute top-0 left-0">
-          {/* <p>{playingAlbum?.artist}</p>
-          <p>{playingAlbum?.songs[playingSongIndex].title}</p> */}
+        {/* <div className="absolute top-0 left-0">
+          <p>{playingAlbum?.artist}</p>
+          <p>{playingAlbum?.songs[playingSongIndex].title}</p>
           <audio
             src={
               playingAlbum?.songs[playingSongIndex].mp3
@@ -65,7 +73,7 @@ function App() {
             autoPlay
             preload="auto"
           ></audio>
-        </div>
+        </div> */}
 
         {/* FLÊCHE DE RETOUR DANS LA VUE DE DÉTAILS D'UN ALBUM */}
         {currentAlbumData && (
