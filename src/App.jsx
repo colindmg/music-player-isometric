@@ -60,21 +60,6 @@ function App() {
           isHidden={currentAlbumData ? true : false}
         />
 
-        {/* DEBUG */}
-        {/* <div className="absolute top-0 left-0">
-          <p>{playingAlbum?.artist}</p>
-          <p>{playingAlbum?.songs[playingSongIndex].title}</p>
-          <audio
-            src={
-              playingAlbum?.songs[playingSongIndex].mp3
-                ? playingAlbum?.songs[playingSongIndex].mp3
-                : ""
-            }
-            autoPlay
-            preload="auto"
-          ></audio>
-        </div> */}
-
         {/* FLÊCHE DE RETOUR DANS LA VUE DE DÉTAILS D'UN ALBUM */}
         {currentAlbumData && (
           <button
