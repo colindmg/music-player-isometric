@@ -45,7 +45,7 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
       {/* INFORMATIONS SUR LE SON EN TRAIN DE JOUER */}
       <div className="flex justify-between items-center">
         {/* Image de cover et titre + artiste */}
-        {playingSongIndex && (
+        {playingSongIndex !== null && (
           <div className="flex items-center gap-3">
             <img
               src={playingAlbum?.cover}
@@ -64,14 +64,14 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
             </div>
           </div>
         )}
-        {!playingSongIndex && (
+        {!(playingSongIndex !== null) && (
           <div className="w-full flex justify-center mt-2">
             <p className="text-[#737373]">Not playing...</p>
           </div>
         )}
 
         {/* Coeur si le son est liké */}
-        {playingSongIndex &&
+        {playingSongIndex !== null &&
           (playingAlbum?.songs[playingSongIndex].isLoved ? (
             <img
               src="/img/icons/heart-filled.svg"
