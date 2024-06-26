@@ -45,38 +45,46 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
       {/* INFORMATIONS SUR LE SON EN TRAIN DE JOUER */}
       <div className="flex justify-between items-center">
         {/* Image de cover et titre + artiste */}
-        <div className="flex items-center gap-3">
-          <img
-            src={playingAlbum?.cover}
-            alt={playingAlbum?.name}
-            className="w-24 h-24 rounded-md"
-          />
-          <div>
-            <div className="flex items-center gap-2">
-              <p className="text-neutral-900 text-xl font-medium">
-                {playingAlbum?.songs[playingSongIndex].title}
-              </p>
-              <AudioAnimatedIcon />
-            </div>
+        {playingSongIndex && (
+          <div className="flex items-center gap-3">
+            <img
+              src={playingAlbum?.cover}
+              alt={playingAlbum?.name}
+              className="w-24 h-24 rounded-md"
+            />
+            <div>
+              <div className="flex items-center gap-2">
+                <p className="text-neutral-900 text-xl font-medium">
+                  {playingAlbum?.songs[playingSongIndex].title}
+                </p>
+                <AudioAnimatedIcon />
+              </div>
 
-            <p className="text-[#737373]">by {playingAlbum?.artist}</p>
+              <p className="text-[#737373]">by {playingAlbum?.artist}</p>
+            </div>
           </div>
-        </div>
+        )}
+        {!playingSongIndex && (
+          <div className="w-full flex justify-center mt-2">
+            <p className="text-[#737373]">Not playing...</p>
+          </div>
+        )}
 
         {/* Coeur si le son est liké */}
-        {playingAlbum?.songs[playingSongIndex].isLoved ? (
-          <img
-            src="/img/icons/heart-filled.svg"
-            alt="Liked song icon"
-            className="w-8 h-8"
-          />
-        ) : (
-          <img
-            src="/img/icons/heart.svg"
-            alt="Not liked song icon"
-            className="w-8 h-8"
-          />
-        )}
+        {playingSongIndex &&
+          (playingAlbum?.songs[playingSongIndex].isLoved ? (
+            <img
+              src="/img/icons/heart-filled.svg"
+              alt="Liked song icon"
+              className="w-8 h-8"
+            />
+          ) : (
+            <img
+              src="/img/icons/heart.svg"
+              alt="Not liked song icon"
+              className="w-8 h-8"
+            />
+          ))}
       </div>
 
       {/* BARRE DE LECTURE DU MORCEAU */}
