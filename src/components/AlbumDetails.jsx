@@ -39,7 +39,7 @@ const AlbumDetails = ({
       </div>
 
       {/* LISTE DES TITRES */}
-      <div className="flex flex-col h-full overflow-y-scroll">
+      <div className="flex flex-col h-full overflow-y-scroll scroll-ml-10">
         {album.songs.map((song, index) => (
           <motion.div
             key={song.title + " - " + album.artist}
@@ -63,10 +63,10 @@ const AlbumDetails = ({
             }}
           >
             <div className="flex items-center">
-              <p className="font-semibold w-5 text-sm">{index + 1}.</p>
+              <p className="font-semibold w-7 text-sm">{index + 1}.</p>
               <div className="flex gap-2 items-center">
                 <h3
-                  className={`text-lg text-neutral-900 ${
+                  className={`relative text-lg text-neutral-900 ${
                     album.name === playingAlbum?.name &&
                     album.artist === playingAlbum?.artist &&
                     index === playingSongIndex
@@ -75,10 +75,12 @@ const AlbumDetails = ({
                   }`}
                 >
                   {song.title}
+                  <div className="absolute -right-8 top-1/2 -translate-y-1/2">
+                    {album.name === playingAlbum?.name &&
+                      album.artist === playingAlbum?.artist &&
+                      index === playingSongIndex && <AudioAnimatedIcon />}
+                  </div>
                 </h3>
-                {album.name === playingAlbum?.name &&
-                  album.artist === playingAlbum?.artist &&
-                  index === playingSongIndex && <AudioAnimatedIcon />}
               </div>
             </div>
 
