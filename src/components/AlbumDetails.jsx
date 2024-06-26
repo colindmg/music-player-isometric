@@ -44,7 +44,9 @@ const AlbumDetails = ({
           <motion.div
             key={song.title + " - " + album.artist}
             className={`flex gap-40 items-center justify-between px-4 py-2 cursor-pointer rounded-lg hover:bg-[#F1F1F1] transition-colors duration-100 ${
-              album === playingAlbum && index === playingSongIndex
+              album.name === playingAlbum.name &&
+              album.artist === playingAlbum.artist &&
+              index === playingSongIndex
                 ? "bg-[#F1F1F1]"
                 : ""
             }`}
@@ -65,16 +67,18 @@ const AlbumDetails = ({
               <div className="flex gap-2 items-center">
                 <h3
                   className={`text-lg text-neutral-900 ${
-                    album === playingAlbum && index === playingSongIndex
+                    album.name === playingAlbum.name &&
+                    album.artist === playingAlbum.artist &&
+                    index === playingSongIndex
                       ? "font-semibold"
                       : ""
                   }`}
                 >
                   {song.title}
                 </h3>
-                {album === playingAlbum && index === playingSongIndex && (
-                  <AudioAnimatedIcon />
-                )}
+                {album.name === playingAlbum.name &&
+                  album.artist === playingAlbum.artist &&
+                  index === playingSongIndex && <AudioAnimatedIcon />}
               </div>
             </div>
 

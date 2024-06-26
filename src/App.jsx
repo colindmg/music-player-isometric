@@ -17,6 +17,16 @@ function App() {
   return (
     <>
       <div className="fixed w-screen h-screen top-0 left-0 bg-gray-50">
+        {/* DEBUG */}
+        <div className="absolute z-50 bottom-4 left-4">
+          <p>currentAlbumData.name : {currentAlbumData?.name}</p>
+          <p>hoveredAlbumData.name : {hoveredAlbumData?.name}</p>
+          <p>playingAlbum.name : {playingAlbum?.name}</p>
+          <p>playingSongIndex : {playingSongIndex}</p>
+        </div>
+
+        {/* --------------------------------------- */}
+
         {/* SCENE 3D */}
         <Canvas>
           <Scene
