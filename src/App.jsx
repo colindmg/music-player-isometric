@@ -86,16 +86,22 @@ function App() {
             opacity: displayOverlay ? 1 : 0,
           }}
         >
-          <p className="text-neutral-500 text-lg -translate-x-24">
-            {playingSongIndex !== null && "Now playing"}
+          <p
+            className={`text-neutral-500 text-lg ${
+              playingSongIndex && "-translate-x-24"
+            }`}
+          >
+            {playingSongIndex !== null ? "Now playing" : "Not playing..."}
           </p>
-          <div className="flex items-center gap-2">
-            <p className="text-neutral-900 text-xl font-medium">
-              {playingAlbum?.songs[playingSongIndex].title} by{" "}
-              {playingAlbum?.artist}
-            </p>
-            {playingAlbum && <AudioAnimatedIcon />}
-          </div>
+          {playingSongIndex !== null && (
+            <div className="flex items-center gap-2">
+              <p className="text-neutral-900 text-xl font-medium">
+                {playingAlbum?.songs[playingSongIndex].title} by{" "}
+                {playingAlbum?.artist}
+              </p>
+              <AudioAnimatedIcon />
+            </div>
+          )}
         </div>
 
         {/* LOGO */}
