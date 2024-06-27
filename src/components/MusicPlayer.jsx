@@ -7,6 +7,8 @@ const MusicPlayer = ({
   playingAlbum,
   playingSongIndex,
   setPlayingSongIndex,
+  isSongPaused,
+  setIsSongPaused,
 }) => {
   const audioRef = useRef(null);
   const [duration, setDuration] = useState(0);
@@ -113,6 +115,7 @@ const MusicPlayer = ({
         }
         autoPlay
         preload="auto"
+        onPlay={() => setIsSongPaused(false)}
       ></audio>
 
       {/* BOUTONS DE CONTROLE DU PLAYER */}
@@ -137,11 +140,19 @@ const MusicPlayer = ({
             />
           </button>
 
-          <img
-            src="/img/icons/pause.svg"
-            alt="Play song icon"
-            className="w-5 cursor-pointer"
-          />
+          <button
+            onClick={() => {
+              setIsSongPaused(!isSongPaused);
+              audioRef.current[isSongPaused ? "play" : "pause"]();
+            }}
+          >
+            <img
+              src="/img/icons/pause.svg"
+              alt="Play song icon"
+              className="w-5 cursor-pointer"
+            />
+          </button>
+
           <button
             onClick={() => {
               if (playingSongIndex < playingAlbum.songs.length - 1) {
@@ -173,6 +184,8 @@ MusicPlayer.propTypes = {
   playingAlbum: PropTypes.object,
   playingSongIndex: PropTypes.number,
   setPlayingSongIndex: PropTypes.func,
+  isSongPaused: PropTypes.bool,
+  setIsSongPaused: PropTypes.func,
 };
 
 export default MusicPlayer;

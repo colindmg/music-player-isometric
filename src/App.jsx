@@ -13,6 +13,7 @@ function App() {
   const [displayOverlay, setDisplayOverlay] = useState(false);
   const [playingAlbum, setPlayingAlbum] = useState(null);
   const [playingSongIndex, setPlayingSongIndex] = useState(null);
+  const [isSongPaused, setIsSongPaused] = useState(false);
 
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
           <p>hoveredAlbumData.name : {hoveredAlbumData?.name}</p>
           <p>playingAlbum.name : {playingAlbum?.name}</p>
           <p>playingSongIndex : {playingSongIndex}</p>
+          <p>isSongPaused : {isSongPaused ? "true" : "false"}</p>
         </div>
 
         {/* --------------------------------------- */}
@@ -69,6 +71,8 @@ function App() {
           playingSongIndex={playingSongIndex}
           isHidden={currentAlbumData ? true : false}
           setPlayingSongIndex={setPlayingSongIndex}
+          isSongPaused={isSongPaused}
+          setIsSongPaused={setIsSongPaused}
         />
 
         {/* FLÊCHE DE RETOUR DANS LA VUE DE DÉTAILS D'UN ALBUM */}
