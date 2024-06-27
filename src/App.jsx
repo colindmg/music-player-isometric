@@ -68,6 +68,7 @@ function App() {
           playingAlbum={playingAlbum}
           playingSongIndex={playingSongIndex}
           isHidden={currentAlbumData ? true : false}
+          setPlayingSongIndex={setPlayingSongIndex}
         />
 
         {/* FLÊCHE DE RETOUR DANS LA VUE DE DÉTAILS D'UN ALBUM */}

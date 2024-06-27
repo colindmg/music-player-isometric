@@ -2,7 +2,12 @@ import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import AudioAnimatedIcon from "./AudioAnimatedIcon";
 
-const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
+const MusicPlayer = ({
+  isHidden,
+  playingAlbum,
+  playingSongIndex,
+  setPlayingSongIndex,
+}) => {
   const audioRef = useRef(null);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -118,21 +123,40 @@ const MusicPlayer = ({ isHidden, playingAlbum, playingSongIndex }) => {
           className="cursor-pointer"
         />
         <div className="flex items-center gap-5">
-          <img
-            src="/img/icons/previous-song.svg"
-            alt="Previous song icon"
-            className="w-5 cursor-pointer"
-          />
+          <button
+            onClick={() => {
+              if (playingSongIndex > 0) {
+                setPlayingSongIndex(playingSongIndex - 1);
+              }
+            }}
+          >
+            <img
+              src="/img/icons/previous-song.svg"
+              alt="Previous song icon"
+              className="w-5 cursor-pointer"
+            />
+          </button>
+
           <img
             src="/img/icons/pause.svg"
             alt="Play song icon"
             className="w-5 cursor-pointer"
           />
-          <img
-            src="/img/icons/next-song.svg"
-            alt="Next song icon"
-            className="w-5 cursor-pointer"
-          />
+          <button
+            onClick={() => {
+              if (playingSongIndex < playingAlbum.songs.length - 1) {
+                setPlayingSongIndex(playingSongIndex + 1);
+              } else {
+                setPlayingSongIndex(0);
+              }
+            }}
+          >
+            <img
+              src="/img/icons/next-song.svg"
+              alt="Next song icon"
+              className="w-5 cursor-pointer"
+            />
+          </button>
         </div>
         <img
           src="/img/icons/repeat.svg"
@@ -148,6 +172,7 @@ MusicPlayer.propTypes = {
   isHidden: PropTypes.bool,
   playingAlbum: PropTypes.object,
   playingSongIndex: PropTypes.number,
+  setPlayingSongIndex: PropTypes.func,
 };
 
 export default MusicPlayer;
