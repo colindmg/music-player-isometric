@@ -59,10 +59,10 @@ const MusicPlayer = ({
             />
             <div>
               <div className="flex items-center gap-2">
+                <AudioAnimatedIcon />
                 <p className="text-neutral-900 text-xl font-medium">
                   {playingAlbum?.songs[playingSongIndex].title}
                 </p>
-                <AudioAnimatedIcon />
               </div>
 
               <p className="text-[#737373]">by {playingAlbum?.artist}</p>
