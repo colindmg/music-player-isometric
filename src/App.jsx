@@ -1,5 +1,6 @@
+import { Loader } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import AlbumDetails from "./components/AlbumDetails";
 import AudioAnimatedIcon from "./components/AudioAnimatedIcon";
 import HoveredAlbumInfos from "./components/HoveredAlbumInfos";
@@ -19,24 +20,37 @@ function App() {
     <>
       <div className="fixed w-screen h-screen top-0 left-0 bg-gray-50">
         {/* DEBUG */}
-        <div className="absolute z-50 bottom-4 left-4">
+        {/* <div className="absolute z-50 bottom-4 left-4">
           <p>currentAlbumData.name : {currentAlbumData?.name}</p>
           <p>hoveredAlbumData.name : {hoveredAlbumData?.name}</p>
           <p>playingAlbum.name : {playingAlbum?.name}</p>
           <p>playingSongIndex : {playingSongIndex}</p>
           <p>isSongPaused : {isSongPaused ? "true" : "false"}</p>
-        </div>
+        </div> */}
 
         {/* --------------------------------------- */}
 
         {/* SCENE 3D */}
         <Canvas>
-          <Scene
-            setCurrentAlbumData={setCurrentAlbumData}
-            setHoveredAlbumData={setHoveredAlbumData}
-            currentAlbumData={currentAlbumData}
-          />
+          <Suspense fallback={null}>
+            <Scene
+              setCurrentAlbumData={setCurrentAlbumData}
+              setHoveredAlbumData={setHoveredAlbumData}
+              currentAlbumData={currentAlbumData}
+            />
+          </Suspense>
         </Canvas>
+        <Loader
+          containerStyles={{
+            backgroundColor: "#f3f4f6",
+            color: "#191919",
+          }}
+          barStyles={{
+            background: "#191919",
+            height: "2px",
+            color: "#191919",
+          }}
+        />
 
         {/* INDICATEURS */}
         <Indicators isHidden={currentAlbumData ? true : false} />
